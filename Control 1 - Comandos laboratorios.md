@@ -166,7 +166,21 @@ Ahora podemos usar los gráficos cuantitativos BOXPLOT y ver por variable cualit
 
 
 ## LABORATORIO 3
+### Instalar paquetes
+Algunas funciones necesitan usar paquetes que ni R ni RStudio las traen instaladas de fábrica.
+Para instalar una librería:
+1. Ve a Tools
+2. Clickea en "Install Packages.."
+3. Se desplegará una ventana de instalación de paquetes, ingresa la librería que buscas en Packages
+4. Clickea en "Install"
+
 ### Obtener EMV mediante fitdistr
+Primero es necesario tener "MASS" instalado.
+
+Luego se importa al documento usando el comando ```library()```.
+
+Después usamos fitdistr para obtener el EMV... pero nosotros sólo necesitamos el estimado, por lo que lo restringimos a ```$estimate```
+
 ```r
 library(MASS) # Primero importamos MASS
 fitdistr(archivo$datos, densfun='normal')
@@ -176,9 +190,19 @@ fitdistr(archivo$datos, densfun='normal')$estimate
 ```
 
 Fitdistr soporta las siguientes distribuciones:
-- Normal
-- Exponencial
-- Gamma
+- Normal: ```normal```
+- Exponencial: ```exponential```
+- Gamma: ```gamma```
+- Beta: ```beta```
+- Chi-cuadrado: ```chi-squared```
+- Geométrica: ```geometric```
+- Log-Normal: ```lognormal```, ```log-normal```
+- Poisson: ```poisson```
+- t-Studient: ```t```
+- Binomial Negativa: ```negative binomial```
+entre otras.
+
+Dudas revisar la ayuda ingresando ```?fitdistr``` en la consola.
 
 ### Comparar EMVs teóricos de una muestra
 Digamos que tenemos como EMVs:
