@@ -40,6 +40,8 @@ Es importante saber los siguientes datos:
 - ```conf.int``` = Limitamos los datos a los extremos del intervalo de confianza más un nivel de confianza probablemente indicado según los datos
 - ```conf.int[c(1,2)]``` = Retorna únicamente los extremos el intervalo de confianza. [Lim. Inferior 	Lim. Superior]
 
+Al no instanciar 
+
 ### IC en t-Studient
 Esta distribución sirve para:
 - Buscar la media de distribuciones normales con **desviación normal desconocida**
@@ -101,7 +103,7 @@ Por Invarianza podemos deducir que para obtener el IC de una función hay que ev
 
 ```R
 # IC de la varianza:
-sigma.test(diamantes$quilate)
+sigma.test(archivo$datos)
 # Buscamos el IC de la SD --> var(a) = sd^2(a)
 
 
@@ -112,9 +114,8 @@ sigma.test(diamantes$quilate)
 sqrt(sigma.test(archivo$datos)$conf.int)
 ```
 
-## Otros comandos que aparecieron en los laboratorios
-###### !--- SECCIÓN EN CONSTRUCCIÓN ---!
 
+## Otros comandos que aparecieron en los laboratorios
 ### Sacar intervalos inferiores y superiores en las fórmulas prácticas
 Si nos damos cuenta, las fórmulas prácticas nos entregan el intervalo entre ambas cotas, pero si buscamos los intervalos de los extremos superiores e inferiores (por ejemplo, buscar cuando "mu > x") usamos el atributo ```alternative```.
 
@@ -130,6 +131,47 @@ z.test(archivo$datos, stdev = sd(archivo$datos), conf.level = 0.95, alternative 
 z.test(archivo$datos, stdev = sd(archivo$datos), conf.level = 0.95, alternative = 'greater')
 ```
 
+**NOTA**: También sirve para realizar ciertos test de hipótesis / comparación de medias
+
+### IC para comparación de medias
+**NOTA:** Mucha atención en el orden, el resultado cambia dependiendo el orden de las muestras
+
+*En los enunciados debería aparecer cuál es el denominador y cual es el numerador, ya sea explícitamente o implícitamente*
+
+En este caso utilizamos el test con t-Studient
+```R
+# Como ejemplo tomaremos un nivel de confianza del 95%
+t.test(archivo$datos_m1, archivo$datos_m2, conf.level = 0.95)$conf.int
+# Esto es el IC de:
+# mean(archivo$datos_m1) - mean(archivo$datos_m2)
+```
+
+### IC para comparación de varianzas
+**NOTA:** Mucha atención en el orden, el resultado cambia dependiendo el orden de las muestras
+
+*En los enunciados debería aparecer cuál es el denominador y cual es el numerador, ya sea explícitamente o implícitamente*
+
+Si deseamos sacar la proporción entre dos varianzas de dos muestras distintas usamos la siguiente fórmula:
+```R
+var.test(archivo$datos_m1, archivo$datos_m2)
+# esto es el IC de:
+# (var(archivo$datos_m1) / var(archivo$datos_m2))
+```
+Un ejemplo es revisar si ambas varianzas son iguales (entonces habría que revisar si el intervalo contiene al 1).
+
+
+### IC para comparación de proporciones/tablas
+**NOTA:** Mucha atención en el orden, el resultado cambia dependiendo el orden de las muestras
+
+*En los enunciados debería aparecer cuál es el denominador y cual es el numerador, ya sea explícitamente o implícitamente*
+
+En este caso podemos utilizar el método para Bernoulli/Tablas:
+```R
+# Compararemos:
+# Muestra 1  =>  Casos favorables: datos_favorables_1  |  Casos totales = datos_totales_m1
+# Muestra 2  =>  Casos favorables: datos_favorables_2  |  Casos totales = datos_totales_m2
+prop.test(c(datos_favorables_m1, datos_favorables_m2), c(datos_totales_m1, datos_totales_m2))$conf.int
+```
 
 ### Filtros:
 
@@ -148,4 +190,24 @@ sigma.test(muestra$datos[is.na(muestra$datos)==FALSE])$conf.int
 # O guardando el filtro en una variable
 datos_con_filtro = muestra$datos[is.na(muestra$datos)==FALSE]
 sigma.test(datos_con_filtro)$conf.int
+```
+
+
+#### Filtro de variable dicotómica, comparar un caso "A" y un conjunto de casos "B,C,..." en la misma categoría
+
+Digamos que tenemos una categoría con los casos [1, 2, 3] , pero queremos un filtro cuando tomamos 1 contra 2 y 3.
+
+Podemos usar el siguiente filtro:
+```R
+Grupo = (archivo$datos == 2) | (archivo$datos == 3)
+Filtro <- archivo$datos
+
+Filtro[Grupo] <- 0 #Reemplazamos los 2 y 3 por 0s
+
+# Ahora podemos hacer tablas
+table(Filtro)
+
+# E incluso tomar datos de una columna en relación al filtro
+archivo$datos_2[Filtro == 0] # Según el grupo
+archivo$datos_2[Filtro == 1] # Según el conjunto separado del grupo
 ```
