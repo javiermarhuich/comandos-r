@@ -31,13 +31,13 @@ Sin embargo, nosotros utilizaremos la fórmula práctica:
 # Una fórmula válida (Considere esta sobre la siguiente)
 z.test(archivo$datos, stdev = sd(archivo$datos), conf.level = 0.95)$conf.int
 # Otra fórmula válida
-z.test(archivo$datos, mean(archivo$datos), sd(archivo$datos, conf.level = 0.95))$conf.int
-z.test(archivo$datos, mean(archivo$datos), sd(archivo$datos, conf.level = 0.95))$conf.int[c(1,2)]
+z.test(archivo$datos, mean(archivo$datos), sd(archivo$datos), conf.level = 0.95))$conf.int
+z.test(archivo$datos, mean(archivo$datos), sd(archivo$datos), conf.level = 0.95))$conf.int[c(1,2)]
 ```
 
 Es importante saber los siguientes datos:
 - ```conf.level``` = Nivel de confianza
-- ```conf.int``` = Limitamos los datos a los extremos del intervalo de confianza más un nivel de confianza probablemente indicado según los datos
+- ```conf.int``` = Limitamos los datos a los extremos del intervalo de confianza más un nivel de confianza que R toma como el indicado según los datos
 - ```conf.int[c(1,2)]``` = Retorna únicamente los extremos el intervalo de confianza. [Lim. Inferior 	Lim. Superior]
 
 Al no instanciar 
