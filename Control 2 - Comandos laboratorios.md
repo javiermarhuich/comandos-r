@@ -117,7 +117,7 @@ sqrt(sigma.test(archivo$datos)$conf.int)
 ### Sacar intervalos inferiores y superiores en las fórmulas prácticas
 Si nos damos cuenta, las fórmulas prácticas nos entregan el intervalo entre ambas cotas, pero si buscamos los intervalos de los extremos superiores e inferiores (por ejemplo, buscar cuando "mu > x") usamos el atributo ```alternative```.
 
-- ```alternative = 'less'```: Entrega un intervalo en un extremo desde la cota 
+- ```alternative = 'less'```: Entrega un intervalo en un extremo desde la cota superior
 - ```alternative = 'greater'```: Entrega un intervalo en un extremo desde la cota inferior
 
 Ejemplo
