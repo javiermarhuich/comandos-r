@@ -64,8 +64,8 @@ Del resultado del test podemos obtener el valor-p, el valor-t (o estadístico ob
 # alpha = nivel de significancia
 valor.p > alpha
 ```
-	- Si al escribir esto en la consola esta retorna ```TRUE``` entonces rechazamos H0
-	- Si al escribir esto en la consola esta retorna ```FALSE``` entonces no podemos rechazar H0
+	- Si al escribir esto en la consola esta retorna ```TRUE``` entonces no podemos rechazar H0
+	- Si al escribir esto en la consola esta retorna ```FALSE``` entonces rechazamos H0
 
 
 **NOTA:** Los 3 test son igualmente concluyentes (todos llegan a la misma conclusión, por lo que si uno es falso los otros dos son falsos), por lo que se recomienda usar el valor-p.
