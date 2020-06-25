@@ -41,8 +41,8 @@ Para comparar se hace lo siguiente:
 # Definamos alpha como el nivel de significancia, entonces:
 valor.p > alpha
 ```
-- Si al escribir esto en la consola esta retorna ```TRUE``` entonces rechazamos H0
-- Si al escribir esto en la consola esta retorna ```FALSE``` entonces no podemos rechazar H0
+- Si al escribir esto en la consola esta retorna ```TRUE``` entonces no podemos rechazar H0
+- Si al escribir esto en la consola esta retorna ```FALSE``` entonces rechazamos H0
 
 ### Test de Hipótesis con t-test
 Esta nos servirá en el caso de revisar la media.
@@ -81,8 +81,8 @@ Nuevamente podemos probar con el valor-p
 # alpha = nivel de significancia
 valor.p > alpha
 ```
-- Si al escribir esto en la consola esta retorna ```TRUE``` entonces rechazamos H0
-- Si al escribir esto en la consola esta retorna ```FALSE``` entonces no podemos rechazar H0
+- Si al escribir esto en la consola esta retorna ```TRUE``` entonces no podemos rechazar H0
+- Si al escribir esto en la consola esta retorna ```FALSE``` entonces rechazamos H0
 
 
 ### Test de hipótesis con prop.test
@@ -96,16 +96,16 @@ Nuevamente podemos probar con el valor-p
 # alpha = nivel de significancia
 valor.p > alpha
 ```
-- Si al escribir esto en la consola esta retorna ```TRUE``` entonces rechazamos H0
-- Si al escribir esto en la consola esta retorna ```FALSE``` entonces no podemos rechazar H0
+- Si al escribir esto en la consola esta retorna ```TRUE``` entonces no podemos rechazar H0
+- Si al escribir esto en la consola esta retorna ```FALSE``` entonces rechazamos H0
 
 
 ## Test de Independencia
 Este test nos sirve para revisar si dos parámetros son independientes.
 
 Para esto se genera un test de hipótesis donde:
-- H0: los parámetros son dependientes
-- H1: los parámetros son independientes
+- H0: los parámetros son independientes
+- H1: los parámetros son dependientes
 
 Si bien podemos realizar todos los casos dentro del estimador a partir de cierto punto sería un exceso por lo que dentro de R también podemos utilizar ```chisq.test```.
 
